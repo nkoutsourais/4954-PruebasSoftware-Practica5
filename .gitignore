@@ -21,3 +21,14 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+damas/target/maven-archiver/pom.properties
+damas/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+damas/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+damas/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+damas/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+damas/target/surefire-reports/damas.AppTest.txt
+damas/target/surefire-reports/TEST-damas.AppTest.xml
+damas/.settings/org.eclipse.core.resources.prefs
+damas/.settings/org.eclipse.jdt.apt.core.prefs
+damas/.settings/org.eclipse.jdt.core.prefs
+damas/.settings/org.eclipse.m2e.core.prefs
