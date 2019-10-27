@@ -2,31 +2,39 @@ package damas.models;
 
 public class Game {
 
-	private final Turn turn;
-	private final Board board;
+	private Turn turn;
+	private Board board;
 
 	public Game() {
-		this.turn = new Turn();
-		this.board = new Board();
+		reset();
 	}
 
 	public Turn getTurn() {
-		return null;
+		return this.turn;
 	}
 
-    public Piece getPiece(Coordinate coordinate) {
-		return null;
+	public Piece getPiece(Coordinate coordinate) {
+		return this.board.getPiece(coordinate);
 	}
 
 	public Error move(Coordinate... coordinates) {
-		return null;
+		return this.board.move(coordinates);
 	}
 
 	public boolean isFinished() {
-		return false;
+		return !this.board.isMovementsAllowed();
 	}
 
 	public boolean isWinner() {
-		return false;
+		return isFinished() && !isTie() && this.board.Contains(turn.getColor());
+	}
+
+	public boolean isTie() {
+		return isFinished() && this.board.Contains(Color.WHITE) && this.board.Contains(Color.BLACK);
+	}
+
+	public void reset() {
+		this.turn = new Turn();
+		this.board = new Board();
 	}
 }

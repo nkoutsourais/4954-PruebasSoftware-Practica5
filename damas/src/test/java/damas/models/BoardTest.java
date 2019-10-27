@@ -25,7 +25,7 @@ public class BoardTest {
         assertNull(board.getPiece(origin));
         Piece pieceTarget = board.getPiece(target);
         assertNotNull(pieceTarget);
-        assertEquals(pieceTarget.getColor(), Color.BLACK);
+        assertEquals(Color.BLACK, pieceTarget.getColor());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class BoardTest {
         Error error = board.move(origin, target);
         assertNotNull(board.getPiece(origin));
         assertNull(board.getPiece(target));
-        assertEquals(error, Error.DISTANCE);
+        assertEquals(Error.DISTANCE, error);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class BoardTest {
         Error error = board.move(origin, target);
         assertNotNull(board.getPiece(origin));
         assertNull(board.getPiece(target));
-        assertEquals(error, Error.OCCUPED);
+        assertEquals(Error.OCCUPED, error);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class BoardTest {
         Error error = board.move(origin, target);
         assertNotNull(board.getPiece(origin));
         assertNull(board.getPiece(target));
-        assertEquals(error, Error.NO_PIECE);
+        assertEquals(Error.NO_PIECE, error);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class BoardTest {
         Error error = board.move(origin, target);
         assertNotNull(board.getPiece(origin));
         assertNull(board.getPiece(target));
-        assertEquals(error, Error.COORDINATES);
+        assertEquals(Error.COORDINATES, error);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class BoardTest {
         Error error = board.move(origin, target);
         assertNotNull(board.getPiece(origin));
         assertNull(board.getPiece(target));
-        assertEquals(error, Error.BAD_MOVE);
+        assertEquals(Error.BAD_MOVE, error);
     }
 
     @Test
@@ -91,7 +91,7 @@ public class BoardTest {
         Error error = board.move(origin, target);
         assertNotNull(board.getPiece(origin));
         assertNull(board.getPiece(target));
-        assertEquals(error, Error.BAD_MOVE);
+        assertEquals(Error.BAD_MOVE, error);
     }
 
     @Test
@@ -102,7 +102,7 @@ public class BoardTest {
         assertNull(board.move(origin, target));
         Piece piece = board.getPiece(target);
         assertTrue(piece instanceof Dama);
-        assertEquals(piece.getColor(), Color.BLACK);
+        assertEquals(Color.BLACK, piece.getColor());
     }
 
     @Test
@@ -129,7 +129,7 @@ public class BoardTest {
         assertNull(board.getPiece(origin1));
         Piece pieceTarget = board.getPiece(target3);
         assertNotNull(pieceTarget);
-        assertEquals(pieceTarget.getColor(), Color.WHITE);
+        assertEquals(Color.WHITE, pieceTarget.getColor());
         assertNull(board.getPiece(new Coordinate(0, 0)));
         assertNull(board.getPiece(new Coordinate(0, 0)));
         assertNull(board.getPiece(new Coordinate(0, 0)));
@@ -159,7 +159,7 @@ public class BoardTest {
         Error error = board.move(origin1, target1, origin2, target2, origin3, target3, origin4, target4);
         assertNotNull(board.getPiece(origin1));
         assertNull(board.getPiece(target4));
-        assertEquals(error, Error.CAPTURE_EXCED);
+        assertEquals(Error.CAPTURE_EXCED, error);
     }
 
     @Test
@@ -170,7 +170,7 @@ public class BoardTest {
         Error error = board.move(origin, target);
         assertNotNull(board.getPiece(origin));
         assertNull(board.getPiece(target));
-        assertEquals(error, Error.BAD_MOVE);
+        assertEquals(Error.BAD_MOVE, error);
     }
 
     @Test

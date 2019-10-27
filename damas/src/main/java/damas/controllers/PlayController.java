@@ -10,7 +10,7 @@ public class PlayController extends Controller {
 
     public PlayController(Game game, State state) {
         super(game, state);
-        
+
         this.cancelController = new CancelController(state);
         this.moveController = new MoveController(game);
     }
@@ -20,15 +20,19 @@ public class PlayController extends Controller {
         controllerVisitor.visit(this);
     }
 
-    public Error move(Coordinate origin, Coordinate target){
-        return null;
+    public Error move(Coordinate... coordinates) {
+        return moveController.move(coordinates);
     }
 
-	public Piece getPiece(Coordinate origin) {
-		return null;
-	}
+    public Piece getPiece(Coordinate origin) {
+        return this.game.getPiece(origin);
+    }
 
-	public Turn getTurn() {
-		return null;
-	}
+    public Turn getTurn() {
+        return this.game.getTurn();
+    }
+
+    public void cancel() {
+        cancelController.cancel();
+    }
 }

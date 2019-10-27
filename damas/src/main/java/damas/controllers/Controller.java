@@ -3,6 +3,7 @@ package damas.controllers;
 import damas.models.*;
 
 public abstract class Controller {
+    
     protected Game game;
 
     protected State state;

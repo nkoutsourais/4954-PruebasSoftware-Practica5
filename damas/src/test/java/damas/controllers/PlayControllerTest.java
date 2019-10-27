@@ -22,10 +22,10 @@ public class PlayControllerTest {
         assertNull(playController.getPiece(origin));
         Piece pieceTarget = playController.getPiece(target);
         assertNotNull(pieceTarget);
-        assertEquals(pieceTarget.getColor(), Color.WHITE);
+        assertEquals(Color.WHITE, pieceTarget.getColor());
         Turn turn = playController.getTurn();
         assertNotNull(turn);
-        assertEquals(turn.getColor(), Color.BLACK);
+        assertEquals(Color.BLACK, turn.getColor());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class PlayControllerTest {
         Error error = playController.move(origin, target);
         assertNotNull(playController.getPiece(origin));
         assertNull(playController.getPiece(target));
-        assertEquals(error, Error.DISTANCE);
+        assertEquals(Error.DISTANCE, error);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class PlayControllerTest {
         Error error = playController.move(origin, target);
         assertNotNull(playController.getPiece(origin));
         assertNull(playController.getPiece(target));
-        assertEquals(error, Error.NO_PIECE);
+        assertEquals(Error.NO_PIECE, error);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class PlayControllerTest {
         Error error = playController.move(origin, target);
         assertNotNull(playController.getPiece(origin));
         assertNull(playController.getPiece(target));
-        assertEquals(error, Error.COORDINATES);
+        assertEquals(Error.COORDINATES, error);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class PlayControllerTest {
         Error error = playController.move(origin, target);
         assertNotNull(playController.getPiece(origin));
         assertNull(playController.getPiece(target));
-        assertEquals(error, Error.BAD_MOVE);
+        assertEquals(Error.BAD_MOVE, error);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class PlayControllerTest {
         Error error = playController.move(origin, target);
         assertNotNull(playController.getPiece(origin));
         assertNull(playController.getPiece(target));
-        assertEquals(error, Error.BAD_MOVE);
+        assertEquals(Error.BAD_MOVE, error);
     }
 
     @Test
@@ -103,6 +103,15 @@ public class PlayControllerTest {
         Error error = playController.move(origin, target);
         assertNotNull(playController.getPiece(origin));
         assertNull(playController.getPiece(target));
-        assertEquals(error, Error.NO_TURN);
+        assertEquals(Error.NO_TURN, error);
+    }
+
+    @Test
+    public void givenPlayControllerWhenCancelUserThenFinalState() {
+        State state = new State();
+        state.next(); //Play
+        PlayController playController = new PlayController(new Game(), state);
+        playController.cancel();
+        assertEquals(StateValue.FINAL, state.getValueState());
     }
 }

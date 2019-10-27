@@ -8,7 +8,7 @@
 ## Diagrama MasterMind
 
 <p align="center">
-  <img alt="" src="">
+  <img alt="" src="diagrama.svg">
 </p>
 
 ### PlantUML
@@ -16,36 +16,41 @@
  ```PlantUML
 @startuml
 
-
-class LasDamas {
+class Damas {
 + play()
 }
-LasDamas *-down-> Logic
-LasDamas *-down-> View
+Damas *-down-> Logic
+Damas *-down-> View
 
 interface View {
 + interact(Controller)
 }
 
-class StartView #orange {
-+ interact(StartController)
+abstract ConsoleView #orange {
++ interact(Controller)
++ visit(StartController startController):void 
++ visit(PlayController playController):void 
++ visit(ResumeController resumeController):void 
 }
 
-class PlayView  #orange {
-+ interact(PlayController)
+View ()-- ConsoleView
+ConsoleView ..> StartController
+ConsoleView ..> PlayController
+ConsoleView ..> ResumeController
+
+class StartView {
 }
 
-class ResumeView  #orange {
-+ interact(ResumeController)
+class PlayView {
 }
 
-StartView ..> StartController
-PlayView ..> PlayController
-ResumeView ..> ResumeController
+class ResumeView {
+}
 
-View ()-- StartView
-View ()-- PlayView
-View ()-- ResumeView
+ConsoleView *-down-> StartView
+ConsoleView *-down-> PlayView
+ConsoleView *-down-> ResumeView
+
 StartView *-down-> BoardView
 PlayView *-down-> BoardView
 BoardView ..> SquareView
@@ -63,9 +68,13 @@ Logic *--> Game
 Logic *-down-> AcceptController
 
 abstract class Controller{
+  + {abstract} accept(AcceptController):void 
 }
 
 interface AcceptController{
+  + visit(StartController startController):void 
+  + visit(PlayController playController):void 
+  + visit(ResumeController resumeController):void 
 }
 
 Controller ..> AcceptController
@@ -79,9 +88,11 @@ class StartController{
 }
 
 class MoveController{
+  + move(Coordinate... coordinates):Error 
 }
 
 class CancelController{
+  + cancel():void
 }
 
 class ResumeController{
@@ -89,7 +100,10 @@ class ResumeController{
 }
 
 class PlayController{
-+ move(Coordinate origin, Coordinate target):Error
+  + move(Coordinate... coordinates):Error
+  + getPiece(Coordinate origin):Piece
+  + getTurn():Turn
+  + cancel():void
 }
 PlayController ..> Coordinate
 
@@ -103,22 +117,35 @@ PlayController *-down-> MoveController
 
 
 class Game{
+  + move(Coordinate... coordinates):Error
+  + getPiece(Coordinate origin):Piece
+  + isFinished():boolean
+  + isWinner():boolean
+  + isTie():boolean
+  + reset():void
 }
 Game *-down-> Board
 Game *-down-> Turn
 Game ..> Error
 
 class Board{
+  + move(Coordinate... coordinates):Error
+  + getPiece(Coordinate origin):Piece
+  + isMovementsAllowed():boolean
+  + isMovementsAllowed(Color):boolean 
+  + Contains(Color):boolean
 }
 Board *-down-> "8x8" Square
 Board *-down-> "1..2x12" Piece
 Board ..> Error
 
 class Square{
+  + getPiece():Piece
 }
 Square  --> "0..1" Piece
 
 abstract class Piece{
+  + getColor():Color 
 }
 Piece <|-down- Peon
 Piece <|-down- Dama
@@ -136,10 +163,15 @@ enum Color{
 }
 
 class Turn{
+  + next():void
+  + getColor():Color 
 }
 Turn *--> Color
 
 class State{
+  + next():void
+  + reset():void
+  + getValueState():StateValue
 }
 State *--> StateValue
 
@@ -151,6 +183,13 @@ enum StateValue{
 }
 
 enum Error{
+  DISTANCE, 
+	OCCUPED, 
+	NO_PIECE, 
+	COORDINATES, 
+	BAD_MOVE, 
+	CAPTURE_EXCED, 
+	NO_TURN
 }
 
 @enduml

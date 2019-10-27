@@ -86,6 +86,6 @@ public class GameTest {
         Error error = game.move(origin, target);
         assertNotNull(game.getPiece(origin));
         assertNull(game.getPiece(target));
-        assertEquals(error, Error.NO_TURN);
+        assertEquals(Error.NO_TURN, error);
     }
 }

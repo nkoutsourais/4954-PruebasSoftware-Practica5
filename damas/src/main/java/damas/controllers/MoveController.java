@@ -12,7 +12,7 @@ public class MoveController {
         this.game = game;
     }
 
-    public Error move(Coordinate origin, Coordinate target){
-        return null;
+    public Error move(Coordinate... coordinates) {
+        return this.game.move(coordinates);
     }
 }
