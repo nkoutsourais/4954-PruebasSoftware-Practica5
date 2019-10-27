@@ -5,8 +5,14 @@ import damas.models.Error;
 
 public class PlayController extends Controller {
 
+    private final MoveController moveController;
+    private final CancelController cancelController;
+
     public PlayController(Game game, State state) {
         super(game, state);
+        
+        this.cancelController = new CancelController(state);
+        this.moveController = new MoveController(game);
     }
 
     @Override
@@ -19,6 +25,10 @@ public class PlayController extends Controller {
     }
 
 	public Piece getPiece(Coordinate origin) {
+		return null;
+	}
+
+	public Turn getTurn() {
 		return null;
 	}
 }

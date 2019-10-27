@@ -1,8 +1,14 @@
 package damas.models;
 
-public class Piece {
-    
+public abstract class Piece {
+	
+	private Color color;
+
+	Piece(Color color) {
+		this.color = color;
+	}
+
     public Color getColor() {
-		return null;
+		return this.color;
 	}
 }

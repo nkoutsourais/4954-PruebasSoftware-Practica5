@@ -15,5 +15,6 @@ public class StartController extends Controller {
     }
 
     public void start() {
+        this.state.next();
     }
 }

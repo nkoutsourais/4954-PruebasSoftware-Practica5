@@ -105,7 +105,7 @@ PlayController *-down-> MoveController
 class Game{
 }
 Game *-down-> Board
-Game *-down-> Turno
+Game *-down-> Turn
 Game ..> Error
 
 class Board{
@@ -118,7 +118,7 @@ class Square{
 }
 Square  --> "0..1" Piece
 
-class Piece{
+abstract class Piece{
 }
 Piece <|-down- Peon
 Piece <|-down- Dama
