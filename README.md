@@ -8,7 +8,7 @@
 ## Diagrama MasterMind
 
 <p align="center">
-  <img alt="" src="diagrama.svg">
+  <img alt="" src="diagrama1.svg">
 </p>
 
 ### PlantUML
@@ -26,7 +26,7 @@ interface View {
 + interact(Controller)
 }
 
-abstract ConsoleView #orange {
+class ConsoleView #orange {
 + interact(Controller)
 + visit(StartController startController):void 
 + visit(PlayController playController):void 
